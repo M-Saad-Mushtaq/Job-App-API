@@ -1,0 +1,368 @@
+openapi: 3.1.0
+info:
+  title: Job API
+  description: ''
+  contact: {}
+  version: '1.0'
+jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
+servers:
+- url: localhost:5000/api/v1
+  variables: {}
+paths:
+  /login:
+    post:
+      tags:
+      - Auth
+      summary: User Login
+      description: ''
+      operationId: UserLogin
+      parameters:
+      - name: User-Agent
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          examples:
+          - insomnia/9.3.1
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UserLoginRequest'
+              - examples:
+                - email: abc@gmail.com
+                  password: secret
+              contentMediaType: application/json
+            example:
+              email: abc@gmail.com
+              password: secret
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            text/plain:
+              schema:
+                contentMediaType: text/plain
+      deprecated: false
+      security: []
+      servers:
+      - url: localhost:5000/api/v1
+        variables: {}
+    parameters: []
+  /register:
+    post:
+      tags:
+      - Auth
+      summary: User Register
+      description: ''
+      operationId: UserRegister
+      parameters:
+      - name: User-Agent
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          examples:
+          - insomnia/9.3.1
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UserRegisterRequest'
+              - examples:
+                - name: abc
+                  email: abc1@gmail.com
+                  password: secret
+              contentMediaType: application/json
+            example:
+              name: abc
+              email: abc1@gmail.com
+              password: secret
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            text/plain:
+              schema:
+                contentMediaType: text/plain
+      deprecated: false
+      security: []
+      servers:
+      - url: localhost:5000/api/v1
+        variables: {}
+    parameters: []
+  /:
+    get:
+      tags:
+      - Jobs
+      summary: Get All Jobs
+      description: ''
+      operationId: GetAllJobs
+      parameters:
+      - name: User-Agent
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          examples:
+          - insomnia/9.3.1
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            text/plain:
+              schema:
+                contentMediaType: text/plain
+      deprecated: false
+      security:
+      - bearer: []
+      servers:
+      - url: localhost:5000/api/v1
+        variables: {}
+    post:
+      tags:
+      - Jobs
+      summary: Post A Job
+      description: ''
+      operationId: PostAJob
+      parameters:
+      - name: User-Agent
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          examples:
+          - insomnia/9.3.1
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/PostAJobRequest'
+              - examples:
+                - company: apple
+                  position: intern
+              contentMediaType: application/json
+            example:
+              company: apple
+              position: intern
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            text/plain:
+              schema:
+                contentMediaType: text/plain
+      deprecated: false
+      security:
+      - bearer: []
+      servers:
+      - url: localhost:5000/api/v1
+        variables: {}
+    parameters: []
+  /{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The job ID
+    get:
+      tags:
+      - Jobs
+      summary: Get A Job
+      description: ''
+      operationId: GetAJob
+      parameters:
+      - name: User-Agent
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          examples:
+          - insomnia/9.3.1
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            text/plain:
+              schema:
+                contentMediaType: text/plain
+      deprecated: false
+      security:
+      - bearer: []
+      servers:
+      - url: localhost:5000/api/v1
+        variables: {}
+    delete:
+      tags:
+      - Jobs
+      summary: Delete A Job
+      description: ''
+      operationId: DeleteAJob
+      parameters:
+      - name: User-Agent
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          examples:
+          - insomnia/9.3.1
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            text/plain:
+              schema:
+                contentMediaType: text/plain
+      deprecated: false
+      security:
+      - bearer: []
+      servers:
+      - url: localhost:5000/api/v1
+        variables: {}
+    patch:
+      tags:
+      - Jobs
+      summary: Update A Job
+      description: ''
+      operationId: UpdateAJob
+      parameters:
+      - name: User-Agent
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          examples:
+          - insomnia/9.3.1
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateAJobRequest'
+              - examples:
+                - company: random
+                  position: random
+              contentMediaType: application/json
+            example:
+              company: random
+              position: random
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            text/plain:
+              schema:
+                contentMediaType: text/plain
+      deprecated: false
+      security:
+      - bearer: []
+      servers:
+      - url: localhost:5000/api/v1
+        variables: {}
+    parameters: []
+components:
+  schemas:
+    UserLoginRequest:
+      title: UserLoginRequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      examples:
+      - email: abc@gmail.com
+        password: secret
+    UserRegisterRequest:
+      title: UserRegisterRequest
+      required:
+      - name
+      - email
+      - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      examples:
+      - name: abc
+        email: abc1@gmail.com
+        password: secret
+    UpdateAJobRequest:
+      title: UpdateAJobRequest
+      required:
+      - company
+      - position
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+      examples:
+      - company: random
+        position: random
+    PostAJobRequest:
+      title: PostAJobRequest
+      required:
+      - company
+      - position
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+      examples:
+      - company: apple
+        position: intern
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+- name: Auth
+  description: ''
+- name: Jobs
+  description: ''
